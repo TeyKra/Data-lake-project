@@ -1,0 +1,81 @@
+/* General styles for the body */
+body {
+    font-family: Arial, sans-serif; /* Sets the font family */
+    margin: 0; /* Removes default margin */
+    padding: 0; /* Removes default padding */
+    background-color: #f4f4f9; /* Sets a light background color */
+    color: #333; /* Sets a dark text color */
+}
+
+/* Styles for the header */
+header {
+    background-color: #007bff; /* Sets the header background to blue */
+    color: white; /* Sets the text color to white */
+    padding: 1rem; /* Adds padding inside the header */
+    text-align: center; /* Centers the header text */
+}
+
+/* General styles for the main content */
+main {
+    padding: 1rem; /* Adds padding around the main content */
+}
+
+/* Styles for headings */
+h1, h2 {
+    margin: 0.5rem 0; /* Adds vertical margin for spacing */
+}
+
+/* Styles for each section */
+section {
+    margin: 2rem 0; /* Adds vertical spacing between sections */
+    padding: 1rem; /* Adds padding inside the section */
+    border: 1px solid #ddd; /* Adds a light border */
+    border-radius: 5px; /* Rounds the corners of the border */
+    background: white; /* Sets a white background for sections */
+}
+
+/* Styles for buttons */
+button {
+    display: inline-block; /* Makes the button inline-block */
+    margin: 0.5rem 0; /* Adds vertical margin */
+    padding: 0.5rem 1rem; /* Adds padding inside the button */
+    background-color: #007bff; /* Sets the button background color */
+    color: white; /* Sets the text color to white */
+    border: none; /* Removes the border */
+    border-radius: 5px; /* Rounds the button corners */
+    cursor: pointer; /* Adds a pointer cursor on hover */
+}
+
+/* Hover effect for buttons */
+button:hover {
+    background-color: #0056b3; /* Changes background to a darker blue on hover */
+}
+
+/* Styles for input fields and unordered lists */
+input, ul {
+    width: 100%; /* Makes them take the full width of their container */
+    margin: 0.5rem 0; /* Adds vertical margin */
+    padding: 0.5rem; /* Adds padding inside the elements */
+    border: 1px solid #ddd; /* Adds a light border */
+    border-radius: 5px; /* Rounds the corners */
+}
+
+/* Styles for unordered lists */
+ul {
+    list-style-type: none; /* Removes bullet points */
+    padding: 0; /* Removes default padding */
+}
+
+/* Styles for list items */
+li {
+    padding: 0.5rem 0; /* Adds vertical padding inside each item */
+    border-bottom: 1px solid #eee; /* Adds a light bottom border for separation */
+}
+
+/* Styles for the footer */
+footer {
+    text-align: center; /* Centers the text */
+    padding: 1rem; /* Adds padding inside the footer */
+    background: #333; /* Sets a dark background */
+    color: white; /* Sets the text color to white */
+}
