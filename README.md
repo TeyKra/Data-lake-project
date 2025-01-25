@@ -2,24 +2,39 @@
 
 This project demonstrates a simple setup for managing buckets and files using LocalStack and a custom API.
 
----
+## Docker Commands
 
-## Docker 
-docker compose build --no-cache
+### Build and Start Containers
+- Build images without using the cache:
+  ```bash
+  docker compose build --no-cache
+  ```
 
-docker compose up -d
+- Start containers in detached mode:
+  ```bash
+  docker compose up -d
+  ```
 
-check all container logs
-docker-compose logs -f 
+### Check Logs
+- Check logs for all containers:
+  ```bash
+  docker-compose logs -f
+  ```
 
-check airflow-scheduler logs
-docker logs -f airflow-scheduler-data-lake-project
+- Check logs for the Airflow Scheduler:
+  ```bash
+  docker logs -f airflow-scheduler-data-lake-project
+  ```
 
-check airflow-webserver logs
-docker logs -f airflow-webserver-data-lake-project
+- Check logs for the Airflow Webserver:
+  ```bash
+  docker logs -f airflow-webserver-data-lake-project
+  ```
 
-check localstack logs
-docker logs -f localstack-data-lake-project
+- Check logs for Localstack:
+  ```bash
+  docker logs -f localstack-data-lake-project
+  ```
 
 ## LocalStack Setup
 
@@ -97,36 +112,72 @@ curl -X GET http://127.0.0.1:8000/healthcheck
 
 ---
 
+# Step Process to Use the OpenWeather Data Lake Pipeline Application
 
-Step process to use the openweather data lake pipeline application : 
+## Check the Creation and Content of Each Data Lake Layer
 
-
-
-check the creation and content of each data lake layers :
+### 1. Access the LocalStack Container
+Run the following command to access the container:
+```bash
 docker exec -it localstack-data-lake-project bash
+```
 
+### 2. Configure AWS CLI
+Set up the AWS CLI within the container:
+```bash
 aws configure
 
 AWS Access Key ID [None]: test
 AWS Secret Access Key [None]: test
 Default region name [None]: us-east-1
 Default output format [None]: json
+```
 
-list all S3 bucket
+### 3. List All S3 Buckets
+Run the following command to list all S3 buckets:
+```bash
 aws --endpoint-url=http://localhost:4566 s3 ls
+```
 
+#### Output:
+```
 2025-01-25 13:17:59 raw
 2025-01-25 13:17:59 staging
 2025-01-25 13:17:59 curated
+```
 
-list the content of each bucket: 
-root@42ac4b19d57a:/opt/code/localstack# aws --endpoint-url=http://localhost:4566 s3 ls s3://raw
+### 4. Check the Content of Each Bucket
+
+#### Raw Bucket
+List the content of the `raw` bucket:
+```bash
+aws --endpoint-url=http://localhost:4566 s3 ls s3://raw
+```
+
+#### Output:
+```
 2025-01-25 13:18:01      43038 weather_data_2025-01-25_13-18-01.csv
+```
 
-root@42ac4b19d57a:/opt/code/localstack# aws --endpoint-url=http://localhost:4566 s3 ls s3://staging
+#### Staging Bucket
+List the content of the `staging` bucket:
+```bash
+aws --endpoint-url=http://localhost:4566 s3 ls s3://staging
+```
+
+#### Output:
+```
 2025-01-25 13:20:16     118435 global_weather_data.csv
+```
 
-root@42ac4b19d57a:/opt/code/localstack# aws --endpoint-url=http://localhost:4566 s3 ls s3://curated
+#### Curated Bucket
+List the content of the `curated` bucket:
+```bash
+aws --endpoint-url=http://localhost:4566 s3 ls s3://curated
+```
+
+#### Output:
+```
 2025-01-25 13:20:19     123299 weather_clusters.csv
 2025-01-25 13:20:19     122336 weather_clusters.png
-
+```
