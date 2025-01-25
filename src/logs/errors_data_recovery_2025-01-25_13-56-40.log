@@ -1,0 +1,30 @@
+[
+    {
+        "city": "King Edward Point",
+        "country": "South Georgia",
+        "error": {
+            "error": "Status 404"
+        }
+    },
+    {
+        "city": "Fakaofo",
+        "country": "Tokelau",
+        "error": {
+            "error": "Status 404"
+        }
+    },
+    {
+        "city": "Ngerulmud",
+        "country": "Palau",
+        "error": {
+            "error": "Status 404"
+        }
+    },
+    {
+        "city": "Diego Garcia",
+        "country": "British Indian Ocean Territory",
+        "error": {
+            "error": "Status 404"
+        }
+    }
+]

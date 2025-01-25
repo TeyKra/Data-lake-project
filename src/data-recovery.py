@@ -183,7 +183,7 @@ def convert_weather_data_to_dataframe(weather_data, capitals):
 # =================================================================
 #       FONCTION POUR UPLOADER LE DATAFRAME DANS S3 LOCALSTACK
 # =================================================================
-def upload_dataframe_to_s3(df, bucket_name, object_name, endpoint_url="http://localhost:4566"):
+def upload_dataframe_to_s3(df, bucket_name, object_name, endpoint_url="http://localstack-data-lake-project:4566"):
     """
     Upload un DataFrame Polars directement dans un bucket S3 LocalStack
     sans sauvegarde locale.

@@ -10,6 +10,8 @@ services:
     environment:
       - SERVICES=s3
       - DOCKER_HOST=unix:///var/run/docker.sock
+    networks:
+      - default
 
   postgres:
     image: postgres:13
@@ -22,6 +24,8 @@ services:
       - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
+    networks:
+      - default
 
   airflow-webserver:
     build: .
@@ -37,7 +41,7 @@ services:
       - ./dags:/opt/airflow/dags
       - ./logs:/opt/airflow/logs
       - ./plugins:/opt/airflow/plugins
-      - ./src:/opt/airflow/scripts
+      - ./src:/opt/airflow/src
       - ./build:/opt/airflow/build
     ports:
       - "8081:8080"
@@ -47,6 +51,8 @@ services:
       interval: 30s
       timeout: 10s
       retries: 5
+    networks:
+      - default
 
   airflow-scheduler:
     build: .
@@ -61,9 +67,11 @@ services:
       - ./dags:/opt/airflow/dags
       - ./logs:/opt/airflow/logs
       - ./plugins:/opt/airflow/plugins
-      - ./src:/opt/airflow/scripts
+      - ./src:/opt/airflow/src
       - ./build:/opt/airflow/build
     command: scheduler
+    networks:
+      - default
 
   airflow-init:
     build: .
@@ -83,8 +91,10 @@ services:
       - ./dags:/opt/airflow/dags
       - ./logs:/opt/airflow/logs
       - ./plugins:/opt/airflow/plugins
-      - ./src:/opt/airflow/scripts
+      - ./src:/opt/airflow/src
       - ./build:/opt/airflow/build
+    networks:
+      - default
 
 volumes:
   dags:
@@ -93,3 +103,7 @@ volumes:
   build:
   src:
   postgres_data:
+
+networks:
+  default:
+    name: data-lake-network

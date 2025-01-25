@@ -1,0 +1,14 @@
+[2025-01-25T15:37:51.792+0000] {taskinstance.py:1157} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: openweather_data_lake.staging_to_curated manual__2025-01-25T15:37:42.124214+00:00 [queued]>
+[2025-01-25T15:37:51.796+0000] {taskinstance.py:1157} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: openweather_data_lake.staging_to_curated manual__2025-01-25T15:37:42.124214+00:00 [queued]>
+[2025-01-25T15:37:51.796+0000] {taskinstance.py:1359} INFO - Starting attempt 1 of 3
+[2025-01-25T15:37:51.801+0000] {taskinstance.py:1380} INFO - Executing <Task(PythonOperator): staging_to_curated> on 2025-01-25 15:37:42.124214+00:00
+[2025-01-25T15:37:51.810+0000] {standard_task_runner.py:57} INFO - Started process 2239 to run task
+[2025-01-25T15:37:51.814+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'openweather_data_lake', 'staging_to_curated', 'manual__2025-01-25T15:37:42.124214+00:00', '--job-id', '43', '--raw', '--subdir', 'DAGS_FOLDER/openweather_data_lake.py', '--cfg-path', '/tmp/tmpi8ryc5mw']
+[2025-01-25T15:37:51.818+0000] {standard_task_runner.py:85} INFO - Job 43: Subtask staging_to_curated
+[2025-01-25T15:37:51.853+0000] {logging_mixin.py:151} WARNING - /home/***/.local/lib/python3.8/site-packages/***/settings.py:195 DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+[2025-01-25T15:37:51.889+0000] {task_command.py:415} INFO - Running <TaskInstance: openweather_data_lake.staging_to_curated manual__2025-01-25T15:37:42.124214+00:00 [running]> on host 76d975d787c4
+[2025-01-25T15:37:51.946+0000] {taskinstance.py:1660} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='openweather_data_lake' AIRFLOW_CTX_TASK_ID='staging_to_curated' AIRFLOW_CTX_EXECUTION_DATE='2025-01-25T15:37:42.124214+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-01-25T15:37:42.124214+00:00'
+[2025-01-25T15:37:53.571+0000] {python.py:194} INFO - Done. Returned value was: None
+[2025-01-25T15:37:53.587+0000] {taskinstance.py:1398} INFO - Marking task as SUCCESS. dag_id=openweather_data_lake, task_id=staging_to_curated, execution_date=20250125T153742, start_date=20250125T153751, end_date=20250125T153753
+[2025-01-25T15:37:53.613+0000] {local_task_job_runner.py:228} INFO - Task exited with return code 0
+[2025-01-25T15:37:53.636+0000] {taskinstance.py:2776} INFO - 0 downstream tasks scheduled from follow-on schedule check

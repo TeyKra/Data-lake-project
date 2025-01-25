@@ -1,0 +1,96 @@
+[2025-01-25T12:13:22.739+0000] {processor.py:157} INFO - Started process (PID=177) to work on /opt/airflow/dags/data_to_raw.py
+[2025-01-25T12:13:22.739+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/data_to_raw.py for tasks to queue
+[2025-01-25T12:13:22.740+0000] {logging_mixin.py:151} INFO - [2025-01-25T12:13:22.739+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/data_to_raw.py
+[2025-01-25T12:13:22.742+0000] {logging_mixin.py:151} INFO - [2025-01-25T12:13:22.742+0000] {dagbag.py:347} ERROR - Failed to import: /opt/airflow/dags/data_to_raw.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 343, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/data_to_raw.py", line 13, in <module>
+    "retry_delay": timedelta(minutes=5),
+NameError: name 'timedelta' is not defined
+[2025-01-25T12:13:22.742+0000] {processor.py:841} WARNING - No viable dags retrieved from /opt/airflow/dags/data_to_raw.py
+[2025-01-25T12:13:22.750+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/data_to_raw.py took 0.013 seconds
+[2025-01-25T12:13:53.225+0000] {processor.py:157} INFO - Started process (PID=192) to work on /opt/airflow/dags/data_to_raw.py
+[2025-01-25T12:13:53.225+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/data_to_raw.py for tasks to queue
+[2025-01-25T12:13:53.226+0000] {logging_mixin.py:151} INFO - [2025-01-25T12:13:53.226+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/data_to_raw.py
+[2025-01-25T12:13:53.228+0000] {logging_mixin.py:151} INFO - [2025-01-25T12:13:53.227+0000] {dagbag.py:347} ERROR - Failed to import: /opt/airflow/dags/data_to_raw.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 343, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/data_to_raw.py", line 13, in <module>
+    "retry_delay": timedelta(minutes=5),
+NameError: name 'timedelta' is not defined
+[2025-01-25T12:13:53.228+0000] {processor.py:841} WARNING - No viable dags retrieved from /opt/airflow/dags/data_to_raw.py
+[2025-01-25T12:13:53.237+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/data_to_raw.py took 0.014 seconds
+[2025-01-25T12:14:23.683+0000] {processor.py:157} INFO - Started process (PID=207) to work on /opt/airflow/dags/data_to_raw.py
+[2025-01-25T12:14:23.684+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/data_to_raw.py for tasks to queue
+[2025-01-25T12:14:23.684+0000] {logging_mixin.py:151} INFO - [2025-01-25T12:14:23.684+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/data_to_raw.py
+[2025-01-25T12:14:23.686+0000] {logging_mixin.py:151} INFO - [2025-01-25T12:14:23.685+0000] {dagbag.py:347} ERROR - Failed to import: /opt/airflow/dags/data_to_raw.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 343, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/data_to_raw.py", line 13, in <module>
+    "retry_delay": timedelta(minutes=5),
+NameError: name 'timedelta' is not defined
+[2025-01-25T12:14:23.686+0000] {processor.py:841} WARNING - No viable dags retrieved from /opt/airflow/dags/data_to_raw.py
+[2025-01-25T12:14:23.695+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/data_to_raw.py took 0.013 seconds
+[2025-01-25T12:14:54.155+0000] {processor.py:157} INFO - Started process (PID=220) to work on /opt/airflow/dags/data_to_raw.py
+[2025-01-25T12:14:54.156+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/data_to_raw.py for tasks to queue
+[2025-01-25T12:14:54.158+0000] {logging_mixin.py:151} INFO - [2025-01-25T12:14:54.158+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/data_to_raw.py
+[2025-01-25T12:14:54.167+0000] {logging_mixin.py:151} INFO - [2025-01-25T12:14:54.165+0000] {dagbag.py:347} ERROR - Failed to import: /opt/airflow/dags/data_to_raw.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 343, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/data_to_raw.py", line 13, in <module>
+    "retry_delay": timedelta(minutes=5),
+NameError: name 'timedelta' is not defined
+[2025-01-25T12:14:54.169+0000] {processor.py:841} WARNING - No viable dags retrieved from /opt/airflow/dags/data_to_raw.py
+[2025-01-25T12:14:54.193+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/data_to_raw.py took 0.044 seconds
+[2025-01-25T12:15:10.488+0000] {processor.py:157} INFO - Started process (PID=232) to work on /opt/airflow/dags/data_to_raw.py
+[2025-01-25T12:15:10.491+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/data_to_raw.py for tasks to queue
+[2025-01-25T12:15:10.495+0000] {logging_mixin.py:151} INFO - [2025-01-25T12:15:10.493+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/data_to_raw.py
+[2025-01-25T12:15:10.589+0000] {processor.py:839} INFO - DAG(s) dict_keys(['data_to_raw']) retrieved from /opt/airflow/dags/data_to_raw.py
+[2025-01-25T12:15:10.946+0000] {logging_mixin.py:151} INFO - [2025-01-25T12:15:10.946+0000] {manager.py:499} INFO - Created Permission View: %s
+[2025-01-25T12:15:10.951+0000] {logging_mixin.py:151} INFO - [2025-01-25T12:15:10.951+0000] {manager.py:499} INFO - Created Permission View: %s
+[2025-01-25T12:15:10.953+0000] {logging_mixin.py:151} INFO - [2025-01-25T12:15:10.953+0000] {manager.py:499} INFO - Created Permission View: %s
+[2025-01-25T12:15:10.953+0000] {logging_mixin.py:151} INFO - [2025-01-25T12:15:10.953+0000] {security.py:708} INFO - Not syncing DAG-level permissions for DAG 'DAG:data_to_raw' as access control is unset.
+[2025-01-25T12:15:10.954+0000] {logging_mixin.py:151} INFO - [2025-01-25T12:15:10.954+0000] {dag.py:2915} INFO - Sync 1 DAGs
+[2025-01-25T12:15:10.964+0000] {logging_mixin.py:151} INFO - [2025-01-25T12:15:10.964+0000] {dag.py:2937} INFO - Creating ORM DAG for data_to_raw
+[2025-01-25T12:15:10.975+0000] {logging_mixin.py:151} INFO - [2025-01-25T12:15:10.974+0000] {dag.py:3696} INFO - Setting next_dagrun for data_to_raw to 2025-01-24T00:00:00+00:00, run_after=2025-01-25T00:00:00+00:00
+[2025-01-25T12:15:10.983+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/data_to_raw.py took 0.502 seconds
+[2025-01-25T12:15:41.177+0000] {processor.py:157} INFO - Started process (PID=247) to work on /opt/airflow/dags/data_to_raw.py
+[2025-01-25T12:15:41.179+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/data_to_raw.py for tasks to queue
+[2025-01-25T12:15:41.182+0000] {logging_mixin.py:151} INFO - [2025-01-25T12:15:41.180+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/data_to_raw.py
+[2025-01-25T12:15:41.207+0000] {processor.py:839} INFO - DAG(s) dict_keys(['data_to_raw']) retrieved from /opt/airflow/dags/data_to_raw.py
+[2025-01-25T12:15:41.232+0000] {logging_mixin.py:151} INFO - [2025-01-25T12:15:41.232+0000] {dag.py:2915} INFO - Sync 1 DAGs
+[2025-01-25T12:15:41.247+0000] {logging_mixin.py:151} INFO - [2025-01-25T12:15:41.247+0000] {dag.py:3696} INFO - Setting next_dagrun for data_to_raw to 2025-01-24T00:00:00+00:00, run_after=2025-01-25T00:00:00+00:00
+[2025-01-25T12:15:41.255+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/data_to_raw.py took 0.082 seconds
+[2025-01-25T12:16:11.772+0000] {processor.py:157} INFO - Started process (PID=262) to work on /opt/airflow/dags/data_to_raw.py
+[2025-01-25T12:16:11.774+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/data_to_raw.py for tasks to queue
+[2025-01-25T12:16:11.776+0000] {logging_mixin.py:151} INFO - [2025-01-25T12:16:11.775+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/data_to_raw.py
+[2025-01-25T12:16:11.810+0000] {processor.py:839} INFO - DAG(s) dict_keys(['data_to_raw']) retrieved from /opt/airflow/dags/data_to_raw.py
+[2025-01-25T12:16:11.841+0000] {logging_mixin.py:151} INFO - [2025-01-25T12:16:11.841+0000] {dag.py:2915} INFO - Sync 1 DAGs
+[2025-01-25T12:16:11.856+0000] {logging_mixin.py:151} INFO - [2025-01-25T12:16:11.856+0000] {dag.py:3696} INFO - Setting next_dagrun for data_to_raw to 2025-01-24T00:00:00+00:00, run_after=2025-01-25T00:00:00+00:00
+[2025-01-25T12:16:11.868+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/data_to_raw.py took 0.106 seconds
+[2025-01-25T12:16:42.229+0000] {processor.py:157} INFO - Started process (PID=277) to work on /opt/airflow/dags/data_to_raw.py
+[2025-01-25T12:16:42.231+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/data_to_raw.py for tasks to queue
+[2025-01-25T12:16:42.232+0000] {logging_mixin.py:151} INFO - [2025-01-25T12:16:42.232+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/data_to_raw.py
+[2025-01-25T12:16:42.263+0000] {processor.py:839} INFO - DAG(s) dict_keys(['data_to_raw']) retrieved from /opt/airflow/dags/data_to_raw.py
+[2025-01-25T12:16:42.314+0000] {logging_mixin.py:151} INFO - [2025-01-25T12:16:42.314+0000] {dag.py:2915} INFO - Sync 1 DAGs
+[2025-01-25T12:16:42.343+0000] {logging_mixin.py:151} INFO - [2025-01-25T12:16:42.343+0000] {dag.py:3696} INFO - Setting next_dagrun for data_to_raw to 2025-01-24T00:00:00+00:00, run_after=2025-01-25T00:00:00+00:00
+[2025-01-25T12:16:42.356+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/data_to_raw.py took 0.132 seconds
+[2025-01-25T12:17:12.660+0000] {processor.py:157} INFO - Started process (PID=292) to work on /opt/airflow/dags/data_to_raw.py
+[2025-01-25T12:17:12.663+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/data_to_raw.py for tasks to queue
+[2025-01-25T12:17:12.665+0000] {logging_mixin.py:151} INFO - [2025-01-25T12:17:12.664+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/data_to_raw.py
+[2025-01-25T12:17:12.686+0000] {processor.py:839} INFO - DAG(s) dict_keys(['data_to_raw']) retrieved from /opt/airflow/dags/data_to_raw.py
+[2025-01-25T12:17:12.724+0000] {logging_mixin.py:151} INFO - [2025-01-25T12:17:12.723+0000] {dag.py:2915} INFO - Sync 1 DAGs
+[2025-01-25T12:17:12.742+0000] {logging_mixin.py:151} INFO - [2025-01-25T12:17:12.742+0000] {dag.py:3696} INFO - Setting next_dagrun for data_to_raw to 2025-01-24T00:00:00+00:00, run_after=2025-01-25T00:00:00+00:00
+[2025-01-25T12:17:12.751+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/data_to_raw.py took 0.100 seconds

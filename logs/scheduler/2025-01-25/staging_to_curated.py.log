@@ -1,0 +1,110 @@
+[2025-01-25T12:13:22.665+0000] {processor.py:157} INFO - Started process (PID=167) to work on /opt/airflow/dags/staging_to_curated.py
+[2025-01-25T12:13:22.666+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/staging_to_curated.py for tasks to queue
+[2025-01-25T12:13:22.668+0000] {logging_mixin.py:151} INFO - [2025-01-25T12:13:22.667+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/staging_to_curated.py
+[2025-01-25T12:13:22.687+0000] {logging_mixin.py:151} INFO - [2025-01-25T12:13:22.679+0000] {dagbag.py:347} ERROR - Failed to import: /opt/airflow/dags/staging_to_curated.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 343, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/staging_to_curated.py", line 13, in <module>
+    "retry_delay": timedelta(minutes=5),
+NameError: name 'timedelta' is not defined
+[2025-01-25T12:13:22.689+0000] {processor.py:841} WARNING - No viable dags retrieved from /opt/airflow/dags/staging_to_curated.py
+[2025-01-25T12:13:22.724+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/staging_to_curated.py took 0.073 seconds
+[2025-01-25T12:13:53.178+0000] {processor.py:157} INFO - Started process (PID=182) to work on /opt/airflow/dags/staging_to_curated.py
+[2025-01-25T12:13:53.180+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/staging_to_curated.py for tasks to queue
+[2025-01-25T12:13:53.181+0000] {logging_mixin.py:151} INFO - [2025-01-25T12:13:53.181+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/staging_to_curated.py
+[2025-01-25T12:13:53.188+0000] {logging_mixin.py:151} INFO - [2025-01-25T12:13:53.187+0000] {dagbag.py:347} ERROR - Failed to import: /opt/airflow/dags/staging_to_curated.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 343, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/staging_to_curated.py", line 13, in <module>
+    "retry_delay": timedelta(minutes=5),
+NameError: name 'timedelta' is not defined
+[2025-01-25T12:13:53.189+0000] {processor.py:841} WARNING - No viable dags retrieved from /opt/airflow/dags/staging_to_curated.py
+[2025-01-25T12:13:53.213+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/staging_to_curated.py took 0.039 seconds
+[2025-01-25T12:14:23.626+0000] {processor.py:157} INFO - Started process (PID=197) to work on /opt/airflow/dags/staging_to_curated.py
+[2025-01-25T12:14:23.629+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/staging_to_curated.py for tasks to queue
+[2025-01-25T12:14:23.631+0000] {logging_mixin.py:151} INFO - [2025-01-25T12:14:23.631+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/staging_to_curated.py
+[2025-01-25T12:14:23.641+0000] {logging_mixin.py:151} INFO - [2025-01-25T12:14:23.640+0000] {dagbag.py:347} ERROR - Failed to import: /opt/airflow/dags/staging_to_curated.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 343, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/staging_to_curated.py", line 13, in <module>
+    "retry_delay": timedelta(minutes=5),
+NameError: name 'timedelta' is not defined
+[2025-01-25T12:14:23.642+0000] {processor.py:841} WARNING - No viable dags retrieved from /opt/airflow/dags/staging_to_curated.py
+[2025-01-25T12:14:23.669+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/staging_to_curated.py took 0.057 seconds
+[2025-01-25T12:14:34.846+0000] {processor.py:157} INFO - Started process (PID=212) to work on /opt/airflow/dags/staging_to_curated.py
+[2025-01-25T12:14:34.848+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/staging_to_curated.py for tasks to queue
+[2025-01-25T12:14:34.852+0000] {logging_mixin.py:151} INFO - [2025-01-25T12:14:34.850+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/staging_to_curated.py
+[2025-01-25T12:14:34.863+0000] {logging_mixin.py:151} INFO - [2025-01-25T12:14:34.860+0000] {dagbag.py:347} ERROR - Failed to import: /opt/airflow/dags/staging_to_curated.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 343, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/staging_to_curated.py", line 13, in <module>
+    "retry_delay": timedelta(minutes=5),
+NameError: name 'timedelta' is not defined
+[2025-01-25T12:14:34.863+0000] {processor.py:841} WARNING - No viable dags retrieved from /opt/airflow/dags/staging_to_curated.py
+[2025-01-25T12:14:34.890+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/staging_to_curated.py took 0.050 seconds
+[2025-01-25T12:15:05.350+0000] {processor.py:157} INFO - Started process (PID=227) to work on /opt/airflow/dags/staging_to_curated.py
+[2025-01-25T12:15:05.352+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/staging_to_curated.py for tasks to queue
+[2025-01-25T12:15:05.353+0000] {logging_mixin.py:151} INFO - [2025-01-25T12:15:05.353+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/staging_to_curated.py
+[2025-01-25T12:15:05.360+0000] {logging_mixin.py:151} INFO - [2025-01-25T12:15:05.358+0000] {dagbag.py:347} ERROR - Failed to import: /opt/airflow/dags/staging_to_curated.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 343, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/staging_to_curated.py", line 13, in <module>
+    "retry_delay": timedelta(minutes=5),
+NameError: name 'timedelta' is not defined
+[2025-01-25T12:15:05.360+0000] {processor.py:841} WARNING - No viable dags retrieved from /opt/airflow/dags/staging_to_curated.py
+[2025-01-25T12:15:05.384+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/staging_to_curated.py took 0.041 seconds
+[2025-01-25T12:15:18.718+0000] {processor.py:157} INFO - Started process (PID=242) to work on /opt/airflow/dags/staging_to_curated.py
+[2025-01-25T12:15:18.720+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/staging_to_curated.py for tasks to queue
+[2025-01-25T12:15:18.721+0000] {logging_mixin.py:151} INFO - [2025-01-25T12:15:18.721+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/staging_to_curated.py
+[2025-01-25T12:15:18.759+0000] {processor.py:839} INFO - DAG(s) dict_keys(['staging_to_curated']) retrieved from /opt/airflow/dags/staging_to_curated.py
+[2025-01-25T12:15:18.847+0000] {logging_mixin.py:151} INFO - [2025-01-25T12:15:18.847+0000] {manager.py:499} INFO - Created Permission View: %s
+[2025-01-25T12:15:18.851+0000] {logging_mixin.py:151} INFO - [2025-01-25T12:15:18.851+0000] {manager.py:499} INFO - Created Permission View: %s
+[2025-01-25T12:15:18.854+0000] {logging_mixin.py:151} INFO - [2025-01-25T12:15:18.853+0000] {manager.py:499} INFO - Created Permission View: %s
+[2025-01-25T12:15:18.854+0000] {logging_mixin.py:151} INFO - [2025-01-25T12:15:18.854+0000] {security.py:708} INFO - Not syncing DAG-level permissions for DAG 'DAG:staging_to_curated' as access control is unset.
+[2025-01-25T12:15:18.854+0000] {logging_mixin.py:151} INFO - [2025-01-25T12:15:18.854+0000] {dag.py:2915} INFO - Sync 1 DAGs
+[2025-01-25T12:15:18.860+0000] {logging_mixin.py:151} INFO - [2025-01-25T12:15:18.860+0000] {dag.py:2937} INFO - Creating ORM DAG for staging_to_curated
+[2025-01-25T12:15:18.866+0000] {logging_mixin.py:151} INFO - [2025-01-25T12:15:18.866+0000] {dag.py:3696} INFO - Setting next_dagrun for staging_to_curated to 2025-01-24T00:00:00+00:00, run_after=2025-01-25T00:00:00+00:00
+[2025-01-25T12:15:18.874+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/staging_to_curated.py took 0.166 seconds
+[2025-01-25T12:15:49.468+0000] {processor.py:157} INFO - Started process (PID=257) to work on /opt/airflow/dags/staging_to_curated.py
+[2025-01-25T12:15:49.470+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/staging_to_curated.py for tasks to queue
+[2025-01-25T12:15:49.471+0000] {logging_mixin.py:151} INFO - [2025-01-25T12:15:49.470+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/staging_to_curated.py
+[2025-01-25T12:15:49.495+0000] {processor.py:839} INFO - DAG(s) dict_keys(['staging_to_curated']) retrieved from /opt/airflow/dags/staging_to_curated.py
+[2025-01-25T12:15:49.522+0000] {logging_mixin.py:151} INFO - [2025-01-25T12:15:49.522+0000] {dag.py:2915} INFO - Sync 1 DAGs
+[2025-01-25T12:15:49.535+0000] {logging_mixin.py:151} INFO - [2025-01-25T12:15:49.535+0000] {dag.py:3696} INFO - Setting next_dagrun for staging_to_curated to 2025-01-24T00:00:00+00:00, run_after=2025-01-25T00:00:00+00:00
+[2025-01-25T12:15:49.543+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/staging_to_curated.py took 0.088 seconds
+[2025-01-25T12:16:19.879+0000] {processor.py:157} INFO - Started process (PID=272) to work on /opt/airflow/dags/staging_to_curated.py
+[2025-01-25T12:16:19.881+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/staging_to_curated.py for tasks to queue
+[2025-01-25T12:16:19.882+0000] {logging_mixin.py:151} INFO - [2025-01-25T12:16:19.881+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/staging_to_curated.py
+[2025-01-25T12:16:19.895+0000] {processor.py:839} INFO - DAG(s) dict_keys(['staging_to_curated']) retrieved from /opt/airflow/dags/staging_to_curated.py
+[2025-01-25T12:16:19.914+0000] {logging_mixin.py:151} INFO - [2025-01-25T12:16:19.914+0000] {dag.py:2915} INFO - Sync 1 DAGs
+[2025-01-25T12:16:19.925+0000] {logging_mixin.py:151} INFO - [2025-01-25T12:16:19.925+0000] {dag.py:3696} INFO - Setting next_dagrun for staging_to_curated to 2025-01-24T00:00:00+00:00, run_after=2025-01-25T00:00:00+00:00
+[2025-01-25T12:16:19.932+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/staging_to_curated.py took 0.057 seconds
+[2025-01-25T12:16:50.375+0000] {processor.py:157} INFO - Started process (PID=287) to work on /opt/airflow/dags/staging_to_curated.py
+[2025-01-25T12:16:50.380+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/staging_to_curated.py for tasks to queue
+[2025-01-25T12:16:50.381+0000] {logging_mixin.py:151} INFO - [2025-01-25T12:16:50.381+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/staging_to_curated.py
+[2025-01-25T12:16:50.402+0000] {processor.py:839} INFO - DAG(s) dict_keys(['staging_to_curated']) retrieved from /opt/airflow/dags/staging_to_curated.py
+[2025-01-25T12:16:50.428+0000] {logging_mixin.py:151} INFO - [2025-01-25T12:16:50.428+0000] {dag.py:2915} INFO - Sync 1 DAGs
+[2025-01-25T12:16:50.445+0000] {logging_mixin.py:151} INFO - [2025-01-25T12:16:50.445+0000] {dag.py:3696} INFO - Setting next_dagrun for staging_to_curated to 2025-01-24T00:00:00+00:00, run_after=2025-01-25T00:00:00+00:00
+[2025-01-25T12:16:50.454+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/staging_to_curated.py took 0.088 seconds
+[2025-01-25T12:17:20.894+0000] {processor.py:157} INFO - Started process (PID=302) to work on /opt/airflow/dags/staging_to_curated.py
+[2025-01-25T12:17:20.897+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/staging_to_curated.py for tasks to queue
+[2025-01-25T12:17:20.900+0000] {logging_mixin.py:151} INFO - [2025-01-25T12:17:20.898+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/staging_to_curated.py
+[2025-01-25T12:17:20.928+0000] {processor.py:839} INFO - DAG(s) dict_keys(['staging_to_curated']) retrieved from /opt/airflow/dags/staging_to_curated.py
+[2025-01-25T12:17:20.968+0000] {logging_mixin.py:151} INFO - [2025-01-25T12:17:20.968+0000] {dag.py:2915} INFO - Sync 1 DAGs
+[2025-01-25T12:17:20.989+0000] {logging_mixin.py:151} INFO - [2025-01-25T12:17:20.989+0000] {dag.py:3696} INFO - Setting next_dagrun for staging_to_curated to 2025-01-24T00:00:00+00:00, run_after=2025-01-25T00:00:00+00:00
+[2025-01-25T12:17:20.999+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/staging_to_curated.py took 0.114 seconds

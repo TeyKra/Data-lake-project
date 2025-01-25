@@ -65,18 +65,17 @@ document.getElementById("download-button").addEventListener("click", async () =>
     try {
         const response = await fetch(`${API_BASE_URL}/download/${bucketName}/${fileName}`);
         if (!response.ok) {
-            const errorData = await response.json();
-            throw new Error(errorData.detail || "Erreur inconnue lors du téléchargement.");
+            const errorText = await response.text(); // Lire l'erreur comme texte brut
+            throw new Error(errorText || "Erreur inconnue lors du téléchargement.");
         }
 
-        const data = await response.json();
-        const blob = new Blob([data.content], { type: "text/plain" });
+        const blob = await response.blob(); // Lire la réponse en tant que données binaires
         const link = document.createElement("a");
         link.href = URL.createObjectURL(blob);
-        link.download = fileName;
+        link.download = fileName; // Nom du fichier pour le téléchargement
         link.click();
     } catch (error) {
-        alert("Error downloading the file: " + error);
+        alert("Error downloading the file: " + error.message);
     }
 });
 
@@ -86,25 +85,31 @@ document.getElementById("download-button").addEventListener("click", async () =>
 document.getElementById("upload-button").addEventListener("click", async () => {
     const bucketName = document.getElementById("upload-bucket").value;
     const fileInput = document.getElementById("upload-file");
+    const file = fileInput.files[0];
 
-    if (!bucketName || !fileInput.files.length) {
-        alert("Please enter a bucket and select a file.");
+    if (!bucketName || !file) {
+        alert("Please provide a bucket name and select a file.");
         return;
     }
 
-    const file = fileInput.files[0];
-    const formData = new FormData();
-    formData.append("file", file);
-
     try {
+        const formData = new FormData();
+        formData.append("file", file);
+
         const response = await fetch(`${API_BASE_URL}/upload/${bucketName}`, {
             method: "POST",
-            body: formData,
+            body: formData
         });
+
+        if (!response.ok) {
+            const errorData = await response.json();
+            throw new Error(errorData.detail || "Unknown error during file upload.");
+        }
+
         const data = await response.json();
         alert(data.message);
     } catch (error) {
-        alert("Error uploading the file: " + error);
+        alert("Error uploading the file: " + error.message);
     }
 });
 

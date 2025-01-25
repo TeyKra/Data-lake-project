@@ -7,6 +7,7 @@ from io import BytesIO
 from fastapi.staticfiles import StaticFiles
 from datetime import datetime
 import requests 
+from fastapi.responses import StreamingResponse
 
 # Initialisation de l'application FastAPI
 app = FastAPI()
@@ -15,8 +16,8 @@ app.mount("/frontend", StaticFiles(directory="frontend"), name="frontend")
 
 # Configuration des buckets LocalStack
 S3_ENDPOINT_URL = "http://localhost:4566"
-AWS_ACCESS_KEY_ID = "root"
-AWS_SECRET_ACCESS_KEY = "root"
+AWS_ACCESS_KEY_ID = "test"
+AWS_SECRET_ACCESS_KEY = "test"
 BUCKETS = ["raw", "staging", "curated"]
 
 # Clé API OpenWeather (vous pouvez la récupérer d'un fichier .env, variable d'environnement, etc.)
@@ -68,7 +69,18 @@ def download_file(bucket_name: str, file_name: str):
     try:
         response = s3_client.get_object(Bucket=bucket_name, Key=file_name)
         file_content = response["Body"].read()
-        return {"file_name": file_name, "content": file_content.decode("utf-8")}
+
+        # Détecter le type MIME
+        import mimetypes
+        mime_type, _ = mimetypes.guess_type(file_name)
+        mime_type = mime_type or "application/octet-stream"
+
+        # Retourner une réponse en streaming
+        return StreamingResponse(
+            BytesIO(file_content),
+            media_type=mime_type,
+            headers={"Content-Disposition": f"attachment; filename={file_name}"}
+        )
     except ClientError as e:
         raise HTTPException(status_code=500, detail=f"Erreur lors du téléchargement du fichier : {e}")
 
@@ -101,6 +113,7 @@ def delete_file(bucket_name: str, file_name: str):
     except ClientError as e:
         raise HTTPException(status_code=500, detail=f"Erreur lors de la suppression du fichier : {e}")
     
+
 @app.get("/weather")
 def get_weather_by_coordinates(lat: float, lon: float):
     """
@@ -116,8 +129,8 @@ def get_weather_by_coordinates(lat: float, lon: float):
     - Un dictionnaire contenant toutes les informations météo récupérées.
     """
     # Préparation de l'appel à l'API OpenWeather
-    url = "https://api.openweathermap.org/data/2.5/weather"
-    params = {
+    weather_url = "https://api.openweathermap.org/data/2.5/weather"
+    weather_params = {
         "lat": lat,
         "lon": lon,
         "appid": OPENWEATHER_API_KEY,
@@ -125,46 +138,59 @@ def get_weather_by_coordinates(lat: float, lon: float):
     }
 
     try:
-        response = requests.get(url, params=params)
-        if response.status_code != 200:
+        # Récupération des données météo
+        weather_response = requests.get(weather_url, params=weather_params)
+        if weather_response.status_code != 200:
             raise HTTPException(
-                status_code=response.status_code,
-                detail=f"Erreur OpenWeather: {response.json().get('message', 'Erreur inconnue')}"
+                status_code=weather_response.status_code,
+                detail=f"Erreur OpenWeather: {weather_response.json().get('message', 'Erreur inconnue')}"
             )
-        data = response.json()
+        weather_data = weather_response.json()
 
-        # Construction d'un dictionnaire respectant les mêmes colonnes que dans data-recovery.py
-        # Certaines valeurs peuvent être absentes, on gère par .get()
+        # Récupération du code pays
+        country_code = weather_data.get("sys", {}).get("country", "N/A")
+
+        # Conversion du code pays en nom complet avec l'API Rest Countries
+        country_name = "N/A"
+        if country_code != "N/A":
+            rest_countries_url = f"https://restcountries.com/v3.1/alpha/{country_code}"
+            rest_countries_response = requests.get(rest_countries_url)
+            if rest_countries_response.status_code == 200:
+                country_info = rest_countries_response.json()
+                country_name = country_info[0].get("name", {}).get("common", country_code)
+            else:
+                country_name = country_code  # Si l'API échoue, garder le code pays
+
+        # Construction des informations météo
         weather_info = {
-            "country": data.get("sys", {}).get("country", "N/A"),
-            "city": data.get("name", "N/A"),
-            "id": data.get("id", 0),
-            "lon": data.get("coord", {}).get("lon", lon),
-            "lat": data.get("coord", {}).get("lat", lat),
-            "base": data.get("base", "N/A"),
-            "main": data.get("weather", [{}])[0].get("main", "N/A"),
-            "description": data.get("weather", [{}])[0].get("description", "N/A"),
-            "temp": data.get("main", {}).get("temp", 0.0),
-            "feels_like": data.get("main", {}).get("feels_like", 0.0),
-            "temp_min": data.get("main", {}).get("temp_min", 0.0),
-            "tem_max": data.get("main", {}).get("temp_max", 0.0),  # conforme au DataFrame initial
-            "pressure": data.get("main", {}).get("pressure", 0),
-            "humidity": data.get("main", {}).get("humidity", 0),
-            "sea_level": data.get("main", {}).get("sea_level", 0),
-            "grnd_level": data.get("main", {}).get("grnd_level", 0),
-            "visibility": data.get("visibility", 0),
-            "speed": data.get("wind", {}).get("speed", 0.0),
-            "deg": data.get("wind", {}).get("deg", 0),
-            "clouds": data.get("clouds", {}).get("all", 0),
-            "dt": data.get("dt", 0),
-            "sunrise": data.get("sys", {}).get("sunrise", 0),
-            "sunset": data.get("sys", {}).get("sunset", 0),
-            "timezone": data.get("timezone", 0),
-            "cod": data.get("cod", 0)
+            "country": country_name,
+            "city": weather_data.get("name", "N/A"),
+            "id": weather_data.get("id", 0),
+            "lon": weather_data.get("coord", {}).get("lon", lon),
+            "lat": weather_data.get("coord", {}).get("lat", lat),
+            "base": weather_data.get("base", "N/A"),
+            "main": weather_data.get("weather", [{}])[0].get("main", "N/A"),
+            "description": weather_data.get("weather", [{}])[0].get("description", "N/A"),
+            "temp": weather_data.get("main", {}).get("temp", 0.0),
+            "feels_like": weather_data.get("main", {}).get("feels_like", 0.0),
+            "temp_min": weather_data.get("main", {}).get("temp_min", 0.0),
+            "temp_max": weather_data.get("main", {}).get("temp_max", 0.0),
+            "pressure": weather_data.get("main", {}).get("pressure", 0),
+            "humidity": weather_data.get("main", {}).get("humidity", 0),
+            "sea_level": weather_data.get("main", {}).get("sea_level", 0),
+            "grnd_level": weather_data.get("main", {}).get("grnd_level", 0),
+            "visibility": weather_data.get("visibility", 0),
+            "speed": weather_data.get("wind", {}).get("speed", 0.0),
+            "deg": weather_data.get("wind", {}).get("deg", 0),
+            "clouds": weather_data.get("clouds", {}).get("all", 0),
+            "dt": weather_data.get("dt", 0),
+            "sunrise": weather_data.get("sys", {}).get("sunrise", 0),
+            "sunset": weather_data.get("sys", {}).get("sunset", 0),
+            "timezone": weather_data.get("timezone", 0),
+            "cod": weather_data.get("cod", 0)
         }
 
-        # Conversion en CSV dans un buffer mémoire
-        # On crée d'abord l'entête CSV et la ligne unique de valeurs
+        # Conversion en CSV
         csv_header = ",".join(weather_info.keys())
         csv_values = ",".join(str(v) for v in weather_info.values())
         csv_content = f"{csv_header}\n{csv_values}"
@@ -183,14 +209,14 @@ def get_weather_by_coordinates(lat: float, lon: float):
         except ClientError as e:
             raise HTTPException(status_code=500, detail=f"Erreur S3 lors de l'upload du CSV : {e}")
 
-        # Retourne les données météo sous forme de JSON
         return {
             "message": f"Données météo pour lat={lat}, lon={lon} stockées sous '{filename}'.",
             "weather_data": weather_info
         }
 
     except requests.RequestException as e:
-        raise HTTPException(status_code=500, detail=f"Erreur de connexion à l'API OpenWeather: {str(e)}")
+        raise HTTPException(status_code=500, detail=f"Erreur de connexion à l'API OpenWeather ou Rest Countries: {str(e)}")
+
 
 @app.get("/healthcheck")
 def health_check():
@@ -198,5 +224,3 @@ def health_check():
     Vérifie si l'API est en cours d'exécution.
     """
     return {"status": "API en cours d'exécution."}
-
-

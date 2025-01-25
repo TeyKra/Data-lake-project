@@ -277,8 +277,15 @@ def preprocess_data(df):
     df = df[column_order_existing]
     print("[SUCCESS] Colonnes réorganisées.")
 
+    # -------------------------------------------------------------------------
+    # 13. TRI DES DONNÉES PAR ORDRE ALPHABÉTIQUE DE 'COUNTRY'
+    # -------------------------------------------------------------------------
+    df = df.sort_values(by="country").reset_index(drop=True)
+    print("[SUCCESS] Tri des données par ordre alphabétique de 'country' réalisé.")
+
     print("[SUCCESS] Prétraitement des données terminé.")
     return df
+
 
 # =================================================================
 #                       FONCTION MAIN
@@ -287,7 +294,7 @@ def preprocess_data(df):
 def main():
     bucket_name = "raw"
     staging_bucket = "staging"
-    endpoint_url = "http://localhost:4566"
+    endpoint_url = "http://localstack-data-lake-project:4566"
 
     # Préfixes à récupérer
     prefixes_to_fetch = ["weather_data_", "user_input_data_"]

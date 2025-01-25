@@ -1,0 +1,25 @@
+[2025-01-25T14:01:47.397+0000] {taskinstance.py:1157} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: openweather_data_lake.staging_to_curated manual__2025-01-25T13:56:36.418002+00:00 [queued]>
+[2025-01-25T14:01:47.402+0000] {taskinstance.py:1157} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: openweather_data_lake.staging_to_curated manual__2025-01-25T13:56:36.418002+00:00 [queued]>
+[2025-01-25T14:01:47.402+0000] {taskinstance.py:1359} INFO - Starting attempt 2 of 3
+[2025-01-25T14:01:47.408+0000] {taskinstance.py:1380} INFO - Executing <Task(PythonOperator): staging_to_curated> on 2025-01-25 13:56:36.418002+00:00
+[2025-01-25T14:01:47.412+0000] {standard_task_runner.py:57} INFO - Started process 658 to run task
+[2025-01-25T14:01:47.418+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'openweather_data_lake', 'staging_to_curated', 'manual__2025-01-25T13:56:36.418002+00:00', '--job-id', '14', '--raw', '--subdir', 'DAGS_FOLDER/openweather_data_lake.py', '--cfg-path', '/tmp/tmpmmq93kka']
+[2025-01-25T14:01:47.421+0000] {standard_task_runner.py:85} INFO - Job 14: Subtask staging_to_curated
+[2025-01-25T14:01:47.436+0000] {logging_mixin.py:151} WARNING - /home/***/.local/lib/python3.8/site-packages/***/settings.py:195 DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+[2025-01-25T14:01:47.465+0000] {task_command.py:415} INFO - Running <TaskInstance: openweather_data_lake.staging_to_curated manual__2025-01-25T13:56:36.418002+00:00 [running]> on host 76d975d787c4
+[2025-01-25T14:01:47.520+0000] {taskinstance.py:1660} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='openweather_data_lake' AIRFLOW_CTX_TASK_ID='staging_to_curated' AIRFLOW_CTX_EXECUTION_DATE='2025-01-25T13:56:36.418002+00:00' AIRFLOW_CTX_TRY_NUMBER='2' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-01-25T13:56:36.418002+00:00'
+[2025-01-25T14:01:49.335+0000] {taskinstance.py:1935} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/python.py", line 192, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/python.py", line 209, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "/opt/airflow/dags/openweather_data_lake.py", line 55, in run_data_classification
+    subprocess.run(["python", script_path], check=True)
+  File "/usr/local/lib/python3.8/subprocess.py", line 516, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['python', '/opt/airflow/src/data-classification.py']' returned non-zero exit status 1.
+[2025-01-25T14:01:49.383+0000] {taskinstance.py:1398} INFO - Marking task as UP_FOR_RETRY. dag_id=openweather_data_lake, task_id=staging_to_curated, execution_date=20250125T135636, start_date=20250125T140147, end_date=20250125T140149
+[2025-01-25T14:01:49.400+0000] {standard_task_runner.py:104} ERROR - Failed to execute job 14 for task staging_to_curated (Command '['python', '/opt/airflow/src/data-classification.py']' returned non-zero exit status 1.; 658)
+[2025-01-25T14:01:49.426+0000] {local_task_job_runner.py:228} INFO - Task exited with return code 1
+[2025-01-25T14:01:49.470+0000] {taskinstance.py:2776} INFO - 0 downstream tasks scheduled from follow-on schedule check
