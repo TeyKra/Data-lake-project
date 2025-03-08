@@ -34,6 +34,10 @@ Check the video presentation of the project
 ---
 
 ## Project Architecture 
+### General Architecture
+![General Architecture](Data_lake_archi.drawio.png)
+
+### Coding Architecture
 ```markdown
 ├── build                 # Directory containing build-related artifacts
 │   └── reqs.txt          # Python dependencies
