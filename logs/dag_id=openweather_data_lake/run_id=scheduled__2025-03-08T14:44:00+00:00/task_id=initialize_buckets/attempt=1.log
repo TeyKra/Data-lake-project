@@ -1,0 +1,17 @@
+[2025-03-08T14:45:01.244+0000] {taskinstance.py:1157} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: openweather_data_lake.initialize_buckets scheduled__2025-03-08T14:44:00+00:00 [queued]>
+[2025-03-08T14:45:01.247+0000] {taskinstance.py:1157} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: openweather_data_lake.initialize_buckets scheduled__2025-03-08T14:44:00+00:00 [queued]>
+[2025-03-08T14:45:01.247+0000] {taskinstance.py:1359} INFO - Starting attempt 1 of 3
+[2025-03-08T14:45:01.253+0000] {taskinstance.py:1380} INFO - Executing <Task(PythonOperator): initialize_buckets> on 2025-03-08 14:44:00+00:00
+[2025-03-08T14:45:01.257+0000] {standard_task_runner.py:57} INFO - Started process 9233 to run task
+[2025-03-08T14:45:01.260+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'openweather_data_lake', 'initialize_buckets', 'scheduled__2025-03-08T14:44:00+00:00', '--job-id', '306', '--raw', '--subdir', 'DAGS_FOLDER/openweather_data_lake.py', '--cfg-path', '/tmp/tmp3__yvxef']
+[2025-03-08T14:45:01.262+0000] {standard_task_runner.py:85} INFO - Job 306: Subtask initialize_buckets
+[2025-03-08T14:45:01.272+0000] {logging_mixin.py:151} WARNING - /home/***/.local/lib/python3.8/site-packages/***/settings.py:195 DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+[2025-03-08T14:45:01.293+0000] {task_command.py:415} INFO - Running <TaskInstance: openweather_data_lake.initialize_buckets scheduled__2025-03-08T14:44:00+00:00 [running]> on host cf46f0a3bf1a
+[2025-03-08T14:45:01.349+0000] {taskinstance.py:1660} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='openweather_data_lake' AIRFLOW_CTX_TASK_ID='initialize_buckets' AIRFLOW_CTX_EXECUTION_DATE='2025-03-08T14:44:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2025-03-08T14:44:00+00:00'
+[2025-03-08T14:45:01.562+0000] {logging_mixin.py:151} INFO - [INFO] Bucket 'raw' already exists.
+[2025-03-08T14:45:01.562+0000] {logging_mixin.py:151} INFO - [INFO] Bucket 'staging' already exists.
+[2025-03-08T14:45:01.563+0000] {logging_mixin.py:151} INFO - [INFO] Bucket 'curated' already exists.
+[2025-03-08T14:45:01.563+0000] {python.py:194} INFO - Done. Returned value was: None
+[2025-03-08T14:45:01.571+0000] {taskinstance.py:1398} INFO - Marking task as SUCCESS. dag_id=openweather_data_lake, task_id=initialize_buckets, execution_date=20250308T144400, start_date=20250308T144501, end_date=20250308T144501
+[2025-03-08T14:45:01.610+0000] {local_task_job_runner.py:228} INFO - Task exited with return code 0
+[2025-03-08T14:45:01.630+0000] {taskinstance.py:2776} INFO - 1 downstream tasks scheduled from follow-on schedule check

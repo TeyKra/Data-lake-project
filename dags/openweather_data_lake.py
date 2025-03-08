@@ -6,14 +6,17 @@ import subprocess
 import os
 
 # ===================================================================
-#           Fonctions des modules du pipeline
+#           PIPELINE MODULE FUNCTIONS
 # ===================================================================
-
 def ensure_buckets_exist():
     """
-    Vérifie que les buckets nécessaires existent, et les crée si besoin.
+    Checks that the required S3 buckets exist, and creates them if necessary.
+    
+    This function connects to the S3 service (using LocalStack in this case),
+    verifies that the buckets "raw", "staging", and "curated" exist, and creates
+    any missing buckets.
     """
-    endpoint_url = "http://localstack-data-lake-project:4566"  # Remplacez par l'URL correcte si nécessaire
+    endpoint_url = "http://localstack-data-lake-project:4566"  # Adjust the endpoint URL if needed
     s3_client = boto3.client(
         "s3",
         endpoint_url=endpoint_url,
@@ -26,38 +29,44 @@ def ensure_buckets_exist():
     for bucket in required_buckets:
         if bucket not in existing_buckets:
             s3_client.create_bucket(Bucket=bucket)
-            print(f"[INFO] Bucket '{bucket}' créé.")
+            print(f"[INFO] Bucket '{bucket}' created.")
         else:
-            print(f"[INFO] Bucket '{bucket}' existe déjà.")
+            print(f"[INFO] Bucket '{bucket}' already exists.")
 
 def run_data_recovery():
     """
-    Exécute le script data-recovery.py pour collecter les données
-    depuis les APIs et les stocker dans le bucket RAW.
+    Executes the data-recovery.py script to collect data from APIs
+    and store it in the RAW bucket.
+    
+    The script is executed as a subprocess, and errors are raised if the script fails.
     """
     script_path = "/opt/airflow/src/data-recovery.py"
     subprocess.run(["python", script_path], check=True)
 
 def run_data_preprocessing():
     """
-    Exécute le script data-preprocessing.py pour traiter les données
-    dans le bucket RAW et les pousser vers le bucket STAGING.
+    Executes the data-preprocessing.py script to process the data in the RAW bucket
+    and push it to the STAGING bucket.
+    
+    The script is executed as a subprocess, ensuring the processing workflow is performed.
     """
     script_path = "/opt/airflow/src/data-preprocessing.py"
     subprocess.run(["python", script_path], check=True)
 
 def run_data_classification():
     """
-    Exécute le script data-classification.py pour classifier les données
-    dans le bucket STAGING et les transférer vers le bucket CURATED.
+    Executes the data-classification.py script to classify data in the STAGING bucket
+    and transfer it to the CURATED bucket.
+    
+    This step organizes the data by applying classification logic, ensuring it is ready
+    for final use.
     """
     script_path = "/opt/airflow/src/data-classification.py"
     subprocess.run(["python", script_path], check=True)
 
 # ===================================================================
-#           Définition du DAG Openweather Data Lake
+#           DEFINITION OF THE OPENWEATHER DATA LAKE DAG
 # ===================================================================
-
 with DAG(
     "openweather_data_lake",
     default_args={
@@ -65,34 +74,44 @@ with DAG(
         "retry_delay": timedelta(minutes=5),
     },
     description="Pipeline to process OpenWeather data into a data lake (RAW -> STAGING -> CURATED)",
-    schedule_interval="0 */6 * * *",  # Planification quotidienne
-    start_date=datetime(2024, 1, 1),  # Date de début
-    catchup=False,  # Ne pas rattraper les exécutions manquées
+    #schedule_interval="0 */6 * * *",  # Uncomment to schedule the DAG (e.g., daily)
+    start_date=datetime(2024, 1, 1),  # Start date for the DAG
+    catchup=False,  # Do not catch up on missed DAG runs
 ) as dag:
 
-    # Tâche 0 : Initialiser les buckets (RAW, STAGING, CURATED)
+    # -------------------------------------------------------------------
+    #   TASK 0: INITIALIZE BUCKETS (RAW, STAGING, CURATED)
+    # -------------------------------------------------------------------
     task_initialize_buckets = PythonOperator(
         task_id="initialize_buckets",
         python_callable=ensure_buckets_exist,
     )
 
-    # Tâche 1 : Collecte des données dans le bucket RAW
+    # -------------------------------------------------------------------
+    #   TASK 1: DATA RECOVERY - COLLECT DATA INTO THE RAW BUCKET
+    # -------------------------------------------------------------------
     task_data_to_raw = PythonOperator(
         task_id="data_to_raw",
         python_callable=run_data_recovery,
     )
 
-    # Tâche 2 : Prétraitement des données et transfert vers STAGING
+    # -------------------------------------------------------------------
+    #   TASK 2: DATA PREPROCESSING - PROCESS DATA AND TRANSFER TO STAGING
+    # -------------------------------------------------------------------
     task_raw_to_staging = PythonOperator(
         task_id="raw_to_staging",
         python_callable=run_data_preprocessing,
     )
 
-    # Tâche 3 : Classification des données et transfert vers CURATED
+    # -------------------------------------------------------------------
+    #   TASK 3: DATA CLASSIFICATION - CLASSIFY DATA AND TRANSFER TO CURATED
+    # -------------------------------------------------------------------
     task_staging_to_curated = PythonOperator(
         task_id="staging_to_curated",
         python_callable=run_data_classification,
     )
 
-    # Dépendances entre les tâches
+    # ===================================================================
+    #           DEFINE TASK DEPENDENCIES
+    # ===================================================================
     task_initialize_buckets >> task_data_to_raw >> task_raw_to_staging >> task_staging_to_curated

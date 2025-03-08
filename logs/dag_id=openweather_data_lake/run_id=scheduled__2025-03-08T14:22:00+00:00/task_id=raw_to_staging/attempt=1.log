@@ -1,0 +1,14 @@
+[2025-03-08T14:23:04.545+0000] {taskinstance.py:1157} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: openweather_data_lake.raw_to_staging scheduled__2025-03-08T14:22:00+00:00 [queued]>
+[2025-03-08T14:23:04.548+0000] {taskinstance.py:1157} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: openweather_data_lake.raw_to_staging scheduled__2025-03-08T14:22:00+00:00 [queued]>
+[2025-03-08T14:23:04.549+0000] {taskinstance.py:1359} INFO - Starting attempt 1 of 3
+[2025-03-08T14:23:04.554+0000] {taskinstance.py:1380} INFO - Executing <Task(PythonOperator): raw_to_staging> on 2025-03-08 14:22:00+00:00
+[2025-03-08T14:23:04.559+0000] {standard_task_runner.py:57} INFO - Started process 6948 to run task
+[2025-03-08T14:23:04.563+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'openweather_data_lake', 'raw_to_staging', 'scheduled__2025-03-08T14:22:00+00:00', '--job-id', '220', '--raw', '--subdir', 'DAGS_FOLDER/openweather_data_lake.py', '--cfg-path', '/tmp/tmpddd5wqzm']
+[2025-03-08T14:23:04.565+0000] {standard_task_runner.py:85} INFO - Job 220: Subtask raw_to_staging
+[2025-03-08T14:23:04.573+0000] {logging_mixin.py:151} WARNING - /home/***/.local/lib/python3.8/site-packages/***/settings.py:195 DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+[2025-03-08T14:23:04.589+0000] {task_command.py:415} INFO - Running <TaskInstance: openweather_data_lake.raw_to_staging scheduled__2025-03-08T14:22:00+00:00 [running]> on host cf46f0a3bf1a
+[2025-03-08T14:23:04.630+0000] {taskinstance.py:1660} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='openweather_data_lake' AIRFLOW_CTX_TASK_ID='raw_to_staging' AIRFLOW_CTX_EXECUTION_DATE='2025-03-08T14:22:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2025-03-08T14:22:00+00:00'
+[2025-03-08T14:23:06.268+0000] {python.py:194} INFO - Done. Returned value was: None
+[2025-03-08T14:23:06.290+0000] {taskinstance.py:1398} INFO - Marking task as SUCCESS. dag_id=openweather_data_lake, task_id=raw_to_staging, execution_date=20250308T142200, start_date=20250308T142304, end_date=20250308T142306
+[2025-03-08T14:23:06.356+0000] {local_task_job_runner.py:228} INFO - Task exited with return code 0
+[2025-03-08T14:23:06.421+0000] {taskinstance.py:2776} INFO - 0 downstream tasks scheduled from follow-on schedule check

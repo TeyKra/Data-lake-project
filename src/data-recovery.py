@@ -6,39 +6,39 @@ import os
 import boto3
 from io import BytesIO
 from datetime import datetime
+import pytz
 
-# Clé API OpenWeather
+# OpenWeather API Key
 API_KEY = "b022acb509eacae0875ded1afe41a527"
 
-# URL de l'API OpenWeather
+# URL of the OpenWeather API
 BASE_URL = "https://api.openweathermap.org/data/2.5/weather"
 
-# URL de l'API REST Countries
+# URL of the REST Countries API
 COUNTRIES_API_URL = "https://restcountries.com/v3.1/all?fields=name,capital"
 
-# Dictionnaire des correspondances pour normaliser les noms des capitales
+# Mapping dictionary to normalize capital names
 CAPITALS_MAPPING = {
     "Papeetē": "Papeete",
     "St. Peter Port": "Saint-Pierre-Port"
 }
 
 # =================================================================
-#           FONCTION DE RÉCUPÉRATION DES CAPITALES VIA API
+#           FUNCTION TO FETCH CAPITALS VIA API
 # =================================================================
-
 def normalize_capital_name(capital):
     """
-    Normalise le nom des capitales en utilisant le dictionnaire de correspondance.
+    Normalizes the capital name using the mapping dictionary.
     """
     return CAPITALS_MAPPING.get(capital, capital)
 
 async def fetch_capitals_from_api():
     """
-    Récupère les noms des capitales et des pays depuis l'API REST Countries.
-    Exclut les entrées dont la capitale est 'No Capital'.
-    Normalise les noms des capitales mal formatés.
+    Fetches the names of capitals and countries from the REST Countries API.
+    Excludes entries where the capital is 'No Capital'.
+    Normalizes improperly formatted capital names.
     """
-    print("[INFO] Récupération des capitales via l'API REST Countries...")
+    print("[INFO] Fetching capitals via the REST Countries API...")
     async with aiohttp.ClientSession() as session:
         try:
             async with session.get(COUNTRIES_API_URL) as response:
@@ -50,54 +50,52 @@ async def fetch_capitals_from_api():
                         capital_list = country.get('capital', [])
                         capital = capital_list[0] if capital_list else 'No Capital'
 
-                        # Normaliser les noms des capitales
+                        # Normalize capital names
                         capital = normalize_capital_name(capital)
 
-                        # Exclure les capitales avec la valeur 'No Capital'
+                        # Exclude capitals with the value 'No Capital'
                         if capital != 'No Capital':
                             capitals.append({"country": name, "city": capital})
 
-                    print(f"[SUCCESS] Récupération de {len(capitals)} capitales (exclusion des 'No Capital').")
+                    print(f"[SUCCESS] Retrieved {len(capitals)} capitals (excluding 'No Capital').")
                     return capitals
                 else:
-                    print(f"[ERROR] Erreur {response.status} lors de l'appel à l'API REST Countries.")
+                    print(f"[ERROR] Error {response.status} when calling the REST Countries API.")
                     return []
         except Exception as e:
-            print(f"[ERROR] Erreur lors de la récupération des capitales : {e}")
+            print(f"[ERROR] Error fetching capitals: {e}")
             return []
 
 # =================================================================
-#        FONCTIONS ASYNCHRONES POUR RÉCUPÉRER LES DONNÉES MÉTÉO
+#        ASYNC FUNCTIONS TO FETCH WEATHER DATA
 # =================================================================
 async def fetch_weather_data(session, api_key, city):
     """
-    Appelle l'API OpenWeather de manière asynchrone pour récupérer
-    les données météo d'une ville.
+    Asynchronously calls the OpenWeather API to fetch weather data for a city.
     """
-    params = {"appid": api_key, "lang": "fr", "q": city}
+    params = {"appid": api_key, "lang": "en", "q": city}
     try:
         async with session.get(BASE_URL, params=params) as response:
             if response.status == 200:
                 return await response.json()
             else:
-                print(f"[ERROR] Erreur {response.status} pour la ville '{city}'.")
+                print(f"[ERROR] Error {response.status} for city '{city}'.")
                 return {"error": f"Status {response.status}"}
     except Exception as e:
-        print(f"[ERROR] Erreur lors de l'appel à l'API pour '{city}' : {e}")
+        print(f"[ERROR] Error calling API for '{city}': {e}")
         return {"error": str(e)}
 
 def fetch_weather_for_all_capitals(api_key, capitals):
     """
-    Wrapper pour exécuter l'appel asynchrone en mode synchrone.
+    Wrapper to execute the asynchronous call in a synchronous manner.
     """
     return asyncio.run(fetch_weather_for_all_capitals_async(api_key, capitals))
 
 async def fetch_weather_for_all_capitals_async(api_key, capitals):
     """
-    Récupère les données météo pour une liste de capitales
-    de manière asynchrone.
+    Asynchronously fetches weather data for a list of capitals.
     """
-    print("[INFO] Démarrage de la récupération des données météo pour toutes les capitales...")
+    print("[INFO] Starting weather data retrieval for all capitals...")
     error_log = []
     weather_data = {}
 
@@ -109,14 +107,14 @@ async def fetch_weather_for_all_capitals_async(api_key, capitals):
             city = capital["city"]
             country = capital["country"]
             if isinstance(result, dict) and "error" not in result:
-                print(f"[SUCCESS] Données météo récupérées pour la ville '{city}', pays '{country}'.")
+                print(f"[SUCCESS] Weather data retrieved for city '{city}', country '{country}'.")
                 weather_data[city] = result
             else:
-                print(f"[ERROR] Données ignorées pour la ville '{city}', pays '{country}' : {result}")
+                print(f"[ERROR] Data ignored for city '{city}', country '{country}': {result}")
                 error_log.append({"city": city, "country": country, "error": result})
-                weather_data[city] = {"error": "Erreur lors de la récupération"}
+                weather_data[city] = {"error": "Error during retrieval"}
 
-    # Création d'un fichier log pour les erreurs
+    # Create a log file for errors
     log_dir = "src/logs"
     os.makedirs(log_dir, exist_ok=True)
     current_date = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
@@ -125,17 +123,17 @@ async def fetch_weather_for_all_capitals_async(api_key, capitals):
     with open(log_file_path, "w", encoding="utf-8") as error_file:
         json.dump(error_log, error_file, indent=4)
 
-    print(f"[INFO] Les éventuelles erreurs ont été enregistrées dans '{log_file_path}'.")
+    print(f"[INFO] Any errors have been logged in '{log_file_path}'.")
     return weather_data
 
 # =================================================================
-#     FONCTION DE CONVERSION DES DONNÉES VERS DATAFRAME POLARS
+#     FUNCTION TO CONVERT DATA INTO A POLARS DATAFRAME
 # =================================================================
 def convert_weather_data_to_dataframe(weather_data, capitals):
     """
-    Structure les données météo en un DataFrame Polars.
+    Structures the weather data into a Polars DataFrame.
     """
-    print("[INFO] Conversion des données météo en DataFrame Polars...")
+    print("[INFO] Converting weather data to Polars DataFrame...")
     structured_data = []
 
     for capital in capitals:
@@ -143,9 +141,9 @@ def convert_weather_data_to_dataframe(weather_data, capitals):
         country = capital["country"]
         data = weather_data.get(city, {})
 
-        # Ignorer les entrées contenant une erreur
+        # Skip entries containing an error
         if "error" in data:
-            print(f"[ERROR] Données de la ville '{city}', pays '{country}' ignorées (erreur présente).")
+            print(f"[ERROR] Data for city '{city}', country '{country}' ignored (error present).")
             continue
 
         structured_data.append({
@@ -177,18 +175,18 @@ def convert_weather_data_to_dataframe(weather_data, capitals):
         })
 
     df = pl.DataFrame(structured_data)
-    print("[SUCCESS] DataFrame Polars créé avec succès.")
+    print("[SUCCESS] Polars DataFrame created successfully.")
     return df
 
 # =================================================================
-#       FONCTION POUR UPLOADER LE DATAFRAME DANS S3 LOCALSTACK
+#       FUNCTION TO UPLOAD THE DATAFRAME TO LOCALSTACK S3
 # =================================================================
 def upload_dataframe_to_s3(df, bucket_name, object_name, endpoint_url="http://localstack-data-lake-project:4566"):
     """
-    Upload un DataFrame Polars directement dans un bucket S3 LocalStack
-    sans sauvegarde locale.
+    Uploads a Polars DataFrame directly to a LocalStack S3 bucket
+    without saving it locally.
     """
-    print("[INFO] Début de l'upload du DataFrame vers S3...")
+    print("[INFO] Starting upload of DataFrame to S3...")
     csv_buffer = BytesIO()
     csv_content = df.write_csv()
     csv_buffer.write(csv_content.encode("utf-8"))
@@ -203,40 +201,38 @@ def upload_dataframe_to_s3(df, bucket_name, object_name, endpoint_url="http://lo
 
     try:
         s3_client.put_object(Bucket=bucket_name, Key=object_name, Body=csv_buffer.getvalue())
-        print(f"[SUCCESS] Fichier '{object_name}' uploadé avec succès dans le bucket '{bucket_name}'.")
+        print(f"[SUCCESS] File '{object_name}' uploaded successfully to bucket '{bucket_name}'.")
     except Exception as e:
-        print(f"[ERROR] Erreur lors de l'upload du fichier '{object_name}' vers S3 : {e}")
+        print(f"[ERROR] Error uploading file '{object_name}' to S3: {e}")
 
 # =================================================================
-#                   FONCTION PRINCIPALE
+#                   MAIN FUNCTION
 # =================================================================
 def main():
-    print("[INFO] Début du script data-recovery.")
+    print("[INFO] Starting data-recovery script.")
 
-    # Récupération des capitales via l'API REST Countries
+    # Fetch capitals via the REST Countries API
     capitals = asyncio.run(fetch_capitals_from_api())
     if not capitals:
-        print("[ERROR] Aucune capitale n'a été récupérée. Fin du programme.")
+        print("[ERROR] No capitals were retrieved. Exiting program.")
         return
 
-    # Récupérer les données météo pour toutes les capitales
+    # Retrieve weather data for all capitals
     all_weather_data = fetch_weather_for_all_capitals(API_KEY, capitals)
 
-    # Convertir les données collectées en DataFrame Polars
+    # Convert the collected data into a Polars DataFrame
     df_weather = convert_weather_data_to_dataframe(all_weather_data, capitals)
 
-    # Générer le nom du fichier avec la date/heure actuelle
-    current_date = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+    # Generate the file name with the current date/time
+    paris_tz = pytz.timezone("Europe/Paris")
+    current_date = datetime.now(paris_tz).strftime("%Y-%m-%d_%H-%M-%S")
     object_name = f"weather_data_{current_date}.csv"
     bucket_name = "raw"
 
-    # Uploader le DataFrame directement dans le bucket S3 LocalStack
+    # Upload the DataFrame directly to the LocalStack S3 bucket
     upload_dataframe_to_s3(df_weather, bucket_name, object_name)
 
-    print("[SUCCESS] Fin du script data-recovery.")
+    print("[SUCCESS] Data-recovery script finished successfully.")
 
-# =================================================================
-#                          ENTRY POINT
-# =================================================================
 if __name__ == "__main__":
     main()
