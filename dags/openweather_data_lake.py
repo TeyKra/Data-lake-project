@@ -74,7 +74,7 @@ with DAG(
         "retry_delay": timedelta(minutes=5),
     },
     description="Pipeline to process OpenWeather data into a data lake (RAW -> STAGING -> CURATED)",
-    #schedule_interval="0 */6 * * *",  # Uncomment to schedule the DAG (e.g., daily)
+    schedule_interval="0 */6 * * *",  # Uncomment to schedule the DAG (e.g., daily)
     start_date=datetime(2024, 1, 1),  # Start date for the DAG
     catchup=False,  # Do not catch up on missed DAG runs
 ) as dag:

@@ -1,139 +1,109 @@
-# ============================================================================
-#          Docker Compose configuration for the Data Lake project
-# ============================================================================
-
-version: '3.8'  # Specify the Docker Compose file format version
+version: '3.8'
 
 services:
-  # --------------------------------------------------------------------------
-  # SERVICE: LocalStack
-  # Description: Emulates AWS services locally (configured here for S3).
-  # --------------------------------------------------------------------------
   localstack:
-    image: localstack/localstack  # Use the official LocalStack image
-    container_name: localstack-data-lake-project  # Container name for easy reference
+    image: localstack/localstack
+    container_name: localstack-data-lake-project
     ports:
-      - "4566:4566"  # Expose port 4566 (LocalStack edge port)
-      - "4572:4572"  # Expose an additional port if needed
+      - "4566:4566"
+      - "4572:4572"
     environment:
-      - SERVICES=s3  # Enable the S3 service in LocalStack
-      - DOCKER_HOST=unix:///var/run/docker.sock  # Docker host information for LocalStack
+      - SERVICES=s3
+      - DOCKER_HOST=unix:///var/run/docker.sock
     networks:
-      - default  # Connect to the default network
+      - default
 
-  # --------------------------------------------------------------------------
-  # SERVICE: PostgreSQL
-  # Description: Provides the PostgreSQL database for Airflow metadata.
-  # --------------------------------------------------------------------------
   postgres:
-    image: postgres:13  # Use PostgreSQL version 13 image
-    container_name: postgres-data-lake-project  # Container name for PostgreSQL
+    image: postgres:13
+    container_name: postgres-data-lake-project
     environment:
-      POSTGRES_USER: airflow        # Database user for Airflow
-      POSTGRES_PASSWORD: airflow    # Password for the Airflow user
-      POSTGRES_DB: airflow          # Name of the database to be created
+      POSTGRES_USER: airflow
+      POSTGRES_PASSWORD: airflow
+      POSTGRES_DB: airflow
     ports:
-      - "5432:5432"  # Expose the default PostgreSQL port
+      - "5432:5432"
     volumes:
-      - postgres_data:/var/lib/postgresql/data  # Persist PostgreSQL data
+      - postgres_data:/var/lib/postgresql/data
     networks:
-      - default  # Connect to the default network
+      - default
 
-  # --------------------------------------------------------------------------
-  # SERVICE: Airflow Webserver
-  # Description: Provides the Airflow web interface for monitoring and management.
-  # --------------------------------------------------------------------------
   airflow-webserver:
-    build: .  # Build the image from the current directory (Dockerfile should be present)
-    image: data-lake-project:latest  # Tag the built image as 'data-lake-project:latest'
-    container_name: airflow-webserver-data-lake-project  # Name the container
+    build: .
+    image: data-lake-project:latest
+    container_name: airflow-webserver-data-lake-project
     depends_on:
-      - postgres  # Ensure PostgreSQL is up before starting the webserver
+      - postgres
     environment:
-      - AIRFLOW__CORE__SQL_ALCHEMY_CONN=postgresql+psycopg2://airflow:airflow@postgres/airflow  # Connection string for Airflow metadata database
-      - AIRFLOW__CORE__EXECUTOR=LocalExecutor  # Set the Airflow executor to LocalExecutor
-      - AIRFLOW__WEBSERVER__SECRET_KEY=your_secret_key_here  # Secret key for Airflow webserver security
+      - AIRFLOW__CORE__SQL_ALCHEMY_CONN=postgresql+psycopg2://airflow:airflow@postgres/airflow
+      - AIRFLOW__CORE__EXECUTOR=LocalExecutor
+      - AIRFLOW__WEBSERVER__SECRET_KEY=your_secret_key_here
     volumes:
-      - ./dags:/opt/airflow/dags     # Mount the DAGs directory
-      - ./logs:/opt/airflow/logs     # Mount the logs directory
-      - ./plugins:/opt/airflow/plugins  # Mount the plugins directory
-      - ./src:/opt/airflow/src       # Mount the source code directory
-      - ./build:/opt/airflow/build   # Mount the build directory
+      - ./dags:/opt/airflow/dags
+      - ./logs:/opt/airflow/logs
+      - ./plugins:/opt/airflow/plugins
+      - ./src:/opt/airflow/src
+      - ./build:/opt/airflow/build
     ports:
-      - "8081:8080"  # Expose the Airflow webserver (host port 8081 maps to container port 8080)
-    command: webserver  # Start the Airflow webserver
+      - "8081:8080"
+    command: webserver
     healthcheck:
-      test: ["CMD", "curl", "--fail", "http://localhost:8080/health"]  # Health check command to verify the webserver is running
-      interval: 30s  # Time between health checks
-      timeout: 10s   # Maximum time to wait for a health check response
-      retries: 5     # Number of retries before considering the container unhealthy
+      test: ["CMD", "curl", "--fail", "http://localhost:8080/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
     networks:
-      - default  # Connect to the default network
+      - default
 
-  # --------------------------------------------------------------------------
-  # SERVICE: Airflow Scheduler
-  # Description: Schedules and triggers Airflow DAG runs.
-  # --------------------------------------------------------------------------
   airflow-scheduler:
-    build: .  # Build the image from the current directory
-    image: data-lake-project:latest  # Use the same image as the webserver
-    container_name: airflow-scheduler-data-lake-project  # Container name for the scheduler
+    build: .
+    image: data-lake-project:latest
+    container_name: airflow-scheduler-data-lake-project
     depends_on:
-      - airflow-webserver  # Ensure the webserver is up before starting the scheduler
+      - airflow-webserver
     environment:
-      - AIRFLOW__CORE__SQL_ALCHEMY_CONN=postgresql+psycopg2://airflow:airflow@postgres/airflow  # Database connection string for Airflow
-      - AIRFLOW__CORE__EXECUTOR=LocalExecutor  # Set the executor to LocalExecutor
+      - AIRFLOW__CORE__SQL_ALCHEMY_CONN=postgresql+psycopg2://airflow:airflow@postgres/airflow
+      - AIRFLOW__CORE__EXECUTOR=LocalExecutor
     volumes:
-      - ./dags:/opt/airflow/dags     # Mount the DAGs directory
-      - ./logs:/opt/airflow/logs     # Mount the logs directory
-      - ./plugins:/opt/airflow/plugins  # Mount the plugins directory
-      - ./src:/opt/airflow/src       # Mount the source code directory
-      - ./build:/opt/airflow/build   # Mount the build directory
-    command: scheduler  # Start the Airflow scheduler
+      - ./dags:/opt/airflow/dags
+      - ./logs:/opt/airflow/logs
+      - ./plugins:/opt/airflow/plugins
+      - ./src:/opt/airflow/src
+      - ./build:/opt/airflow/build
+    command: scheduler
     networks:
-      - default  # Connect to the default network
+      - default
 
-  # --------------------------------------------------------------------------
-  # SERVICE: Airflow Initialization
-  # Description: Initializes the Airflow database and creates the initial web user.
-  # --------------------------------------------------------------------------
   airflow-init:
-    build: .  # Build the image from the current directory
-    image: data-lake-project:latest  # Use the same image as the other Airflow components
-    container_name: airflow-init-data-lake-project  # Container name for initialization tasks
+    build: .
+    image: data-lake-project:latest
+    container_name: airflow-init-data-lake-project
     depends_on:
-      - postgres  # Ensure PostgreSQL is up before initialization
+      - postgres
     environment:
-      - AIRFLOW__CORE__SQL_ALCHEMY_CONN=postgresql+psycopg2://airflow:airflow@postgres/airflow  # Connection string for the Airflow metadata database
-      - AIRFLOW__CORE__EXECUTOR=LocalExecutor  # Set the executor to LocalExecutor
-      - _AIRFLOW_DB_UPGRADE=true  # Flag to trigger a database upgrade
-      - _AIRFLOW_WWW_USER_CREATE=true  # Flag to create the initial Airflow web user
-      - _AIRFLOW_WWW_USER_USERNAME=airflow  # Username for the Airflow web user
-      - _AIRFLOW_WWW_USER_PASSWORD=airflow  # Password for the Airflow web user
-    command: version  # Run a command (here 'version') for initialization purposes
+      - AIRFLOW__CORE__SQL_ALCHEMY_CONN=postgresql+psycopg2://airflow:airflow@postgres/airflow
+      - AIRFLOW__CORE__EXECUTOR=LocalExecutor
+      - _AIRFLOW_DB_UPGRADE=true
+      - _AIRFLOW_WWW_USER_CREATE=true
+      - _AIRFLOW_WWW_USER_USERNAME=airflow
+      - _AIRFLOW_WWW_USER_PASSWORD=airflow
+    command: version
     volumes:
-      - ./dags:/opt/airflow/dags     # Mount the DAGs directory
-      - ./logs:/opt/airflow/logs     # Mount the logs directory
-      - ./plugins:/opt/airflow/plugins  # Mount the plugins directory
-      - ./src:/opt/airflow/src       # Mount the source code directory
-      - ./build:/opt/airflow/build   # Mount the build directory
+      - ./dags:/opt/airflow/dags
+      - ./logs:/opt/airflow/logs
+      - ./plugins:/opt/airflow/plugins
+      - ./src:/opt/airflow/src
+      - ./build:/opt/airflow/build
     networks:
-      - default  # Connect to the default network
+      - default
 
-# --------------------------------------------------------------------------
-# VOLUME DEFINITIONS
-# --------------------------------------------------------------------------
 volumes:
-  dags:         # Volume for persisting Airflow DAGs
-  logs:         # Volume for persisting Airflow logs
-  plugins:      # Volume for persisting Airflow plugins
-  build:        # Volume for persisting build artifacts
-  src:          # Volume for persisting source code
-  postgres_data:  # Volume for persisting PostgreSQL data
+  dags:
+  logs:
+  plugins:
+  build:
+  src:
+  postgres_data:
 
-# --------------------------------------------------------------------------
-# NETWORK DEFINITIONS
-# --------------------------------------------------------------------------
 networks:
   default:
-    name: data-lake-network  # Name of the Docker network used by all services
+    name: data-lake-network

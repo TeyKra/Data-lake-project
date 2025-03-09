@@ -42,7 +42,7 @@ Check the video presentation of the project
 ├── build                 # Directory containing build-related artifacts
 │   └── reqs.txt          # Python dependencies
 ├── dags                  # Directory for Airflow DAG definitions
-│   └── openweather_data_lake # Airflow DAG for the OpenWeather data pipeline
+│   └── openweather_data_lake.py # Airflow DAG for the OpenWeather data pipeline
 ├── data_analysis         # Directory for data analysis tasks
 │   └── data-exploration.ipynb # Jupyter Notebook for data exploration
 ├── frontend              # Directory for frontend assets
