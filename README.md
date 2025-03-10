@@ -8,9 +8,10 @@ The architecture is built on a comprehensive process of data ingestion, transfor
 
 ---
 
-## Video
+## Video demo 
 
-Check the video presentation of the project 
+Check the video demo of the project:
+[Watch the Video](https://www.youtube.com/watch?v=AEschFI1IQ4)
 
 ---
 
