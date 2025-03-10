@@ -1,0 +1,89 @@
+[2025-03-10T18:40:51.722+0000] {processor.py:157} INFO - Started process (PID=166) to work on /opt/airflow/dags/openweather_data_lake.py
+[2025-03-10T18:40:51.725+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/openweather_data_lake.py for tasks to queue
+[2025-03-10T18:40:51.726+0000] {logging_mixin.py:151} INFO - [2025-03-10T18:40:51.725+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/openweather_data_lake.py
+[2025-03-10T18:40:52.370+0000] {processor.py:839} INFO - DAG(s) dict_keys(['openweather_data_lake']) retrieved from /opt/airflow/dags/openweather_data_lake.py
+[2025-03-10T18:40:52.607+0000] {logging_mixin.py:151} INFO - [2025-03-10T18:40:52.607+0000] {manager.py:499} INFO - Created Permission View: %s
+[2025-03-10T18:40:52.609+0000] {logging_mixin.py:151} INFO - [2025-03-10T18:40:52.609+0000] {manager.py:499} INFO - Created Permission View: %s
+[2025-03-10T18:40:52.612+0000] {logging_mixin.py:151} INFO - [2025-03-10T18:40:52.611+0000] {manager.py:499} INFO - Created Permission View: %s
+[2025-03-10T18:40:52.612+0000] {logging_mixin.py:151} INFO - [2025-03-10T18:40:52.612+0000] {security.py:708} INFO - Not syncing DAG-level permissions for DAG 'DAG:openweather_data_lake' as access control is unset.
+[2025-03-10T18:40:52.612+0000] {logging_mixin.py:151} INFO - [2025-03-10T18:40:52.612+0000] {dag.py:2915} INFO - Sync 1 DAGs
+[2025-03-10T18:40:52.628+0000] {logging_mixin.py:151} INFO - [2025-03-10T18:40:52.627+0000] {dag.py:2937} INFO - Creating ORM DAG for openweather_data_lake
+[2025-03-10T18:40:52.650+0000] {logging_mixin.py:151} INFO - [2025-03-10T18:40:52.650+0000] {dag.py:3696} INFO - Setting next_dagrun for openweather_data_lake to 2025-03-10T12:00:00+00:00, run_after=2025-03-10T18:00:00+00:00
+[2025-03-10T18:40:52.664+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/openweather_data_lake.py took 0.950 seconds
+[2025-03-10T18:41:23.036+0000] {processor.py:157} INFO - Started process (PID=172) to work on /opt/airflow/dags/openweather_data_lake.py
+[2025-03-10T18:41:23.038+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/openweather_data_lake.py for tasks to queue
+[2025-03-10T18:41:23.039+0000] {logging_mixin.py:151} INFO - [2025-03-10T18:41:23.039+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/openweather_data_lake.py
+[2025-03-10T18:41:23.390+0000] {processor.py:839} INFO - DAG(s) dict_keys(['openweather_data_lake']) retrieved from /opt/airflow/dags/openweather_data_lake.py
+[2025-03-10T18:41:23.433+0000] {logging_mixin.py:151} INFO - [2025-03-10T18:41:23.433+0000] {dag.py:2915} INFO - Sync 1 DAGs
+[2025-03-10T18:41:23.446+0000] {logging_mixin.py:151} INFO - [2025-03-10T18:41:23.446+0000] {dag.py:3696} INFO - Setting next_dagrun for openweather_data_lake to 2025-03-10T12:00:00+00:00, run_after=2025-03-10T18:00:00+00:00
+[2025-03-10T18:41:23.458+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/openweather_data_lake.py took 0.428 seconds
+[2025-03-10T18:41:53.826+0000] {processor.py:157} INFO - Started process (PID=357) to work on /opt/airflow/dags/openweather_data_lake.py
+[2025-03-10T18:41:53.828+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/openweather_data_lake.py for tasks to queue
+[2025-03-10T18:41:53.829+0000] {logging_mixin.py:151} INFO - [2025-03-10T18:41:53.828+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/openweather_data_lake.py
+[2025-03-10T18:41:54.129+0000] {processor.py:839} INFO - DAG(s) dict_keys(['openweather_data_lake']) retrieved from /opt/airflow/dags/openweather_data_lake.py
+[2025-03-10T18:41:54.158+0000] {logging_mixin.py:151} INFO - [2025-03-10T18:41:54.157+0000] {dag.py:2915} INFO - Sync 1 DAGs
+[2025-03-10T18:41:54.173+0000] {logging_mixin.py:151} INFO - [2025-03-10T18:41:54.173+0000] {dag.py:3696} INFO - Setting next_dagrun for openweather_data_lake to 2025-03-10T18:00:00+00:00, run_after=2025-03-11T00:00:00+00:00
+[2025-03-10T18:41:54.180+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/openweather_data_lake.py took 0.368 seconds
+[2025-03-10T18:42:24.579+0000] {processor.py:157} INFO - Started process (PID=411) to work on /opt/airflow/dags/openweather_data_lake.py
+[2025-03-10T18:42:24.580+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/openweather_data_lake.py for tasks to queue
+[2025-03-10T18:42:24.581+0000] {logging_mixin.py:151} INFO - [2025-03-10T18:42:24.581+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/openweather_data_lake.py
+[2025-03-10T18:42:24.702+0000] {processor.py:839} INFO - DAG(s) dict_keys(['openweather_data_lake']) retrieved from /opt/airflow/dags/openweather_data_lake.py
+[2025-03-10T18:42:24.731+0000] {logging_mixin.py:151} INFO - [2025-03-10T18:42:24.730+0000] {dag.py:2915} INFO - Sync 1 DAGs
+[2025-03-10T18:42:24.746+0000] {logging_mixin.py:151} INFO - [2025-03-10T18:42:24.746+0000] {dag.py:3696} INFO - Setting next_dagrun for openweather_data_lake to 2025-03-10T18:00:00+00:00, run_after=2025-03-11T00:00:00+00:00
+[2025-03-10T18:42:24.753+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/openweather_data_lake.py took 0.180 seconds
+[2025-03-10T18:42:54.942+0000] {processor.py:157} INFO - Started process (PID=455) to work on /opt/airflow/dags/openweather_data_lake.py
+[2025-03-10T18:42:54.944+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/openweather_data_lake.py for tasks to queue
+[2025-03-10T18:42:54.945+0000] {logging_mixin.py:151} INFO - [2025-03-10T18:42:54.944+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/openweather_data_lake.py
+[2025-03-10T18:42:55.046+0000] {processor.py:839} INFO - DAG(s) dict_keys(['openweather_data_lake']) retrieved from /opt/airflow/dags/openweather_data_lake.py
+[2025-03-10T18:42:55.075+0000] {logging_mixin.py:151} INFO - [2025-03-10T18:42:55.075+0000] {dag.py:2915} INFO - Sync 1 DAGs
+[2025-03-10T18:42:55.093+0000] {logging_mixin.py:151} INFO - [2025-03-10T18:42:55.093+0000] {dag.py:3696} INFO - Setting next_dagrun for openweather_data_lake to 2025-03-10T18:00:00+00:00, run_after=2025-03-11T00:00:00+00:00
+[2025-03-10T18:42:55.102+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/openweather_data_lake.py took 0.166 seconds
+[2025-03-10T18:43:25.479+0000] {processor.py:157} INFO - Started process (PID=460) to work on /opt/airflow/dags/openweather_data_lake.py
+[2025-03-10T18:43:25.482+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/openweather_data_lake.py for tasks to queue
+[2025-03-10T18:43:25.484+0000] {logging_mixin.py:151} INFO - [2025-03-10T18:43:25.482+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/openweather_data_lake.py
+[2025-03-10T18:43:25.611+0000] {processor.py:839} INFO - DAG(s) dict_keys(['openweather_data_lake']) retrieved from /opt/airflow/dags/openweather_data_lake.py
+[2025-03-10T18:43:25.786+0000] {logging_mixin.py:151} INFO - [2025-03-10T18:43:25.786+0000] {security.py:708} INFO - Not syncing DAG-level permissions for DAG 'DAG:openweather_data_lake' as access control is unset.
+[2025-03-10T18:43:25.787+0000] {logging_mixin.py:151} INFO - [2025-03-10T18:43:25.787+0000] {dag.py:2915} INFO - Sync 1 DAGs
+[2025-03-10T18:43:25.801+0000] {logging_mixin.py:151} INFO - [2025-03-10T18:43:25.801+0000] {dag.py:2937} INFO - Creating ORM DAG for openweather_data_lake
+[2025-03-10T18:43:25.822+0000] {logging_mixin.py:151} INFO - [2025-03-10T18:43:25.822+0000] {dag.py:3696} INFO - Setting next_dagrun for openweather_data_lake to 2025-03-10T12:00:00+00:00, run_after=2025-03-10T18:00:00+00:00
+[2025-03-10T18:43:25.849+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/openweather_data_lake.py took 0.378 seconds
+[2025-03-10T18:43:55.969+0000] {processor.py:157} INFO - Started process (PID=641) to work on /opt/airflow/dags/openweather_data_lake.py
+[2025-03-10T18:43:55.971+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/openweather_data_lake.py for tasks to queue
+[2025-03-10T18:43:55.972+0000] {logging_mixin.py:151} INFO - [2025-03-10T18:43:55.972+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/openweather_data_lake.py
+[2025-03-10T18:43:56.119+0000] {processor.py:839} INFO - DAG(s) dict_keys(['openweather_data_lake']) retrieved from /opt/airflow/dags/openweather_data_lake.py
+[2025-03-10T18:43:56.155+0000] {logging_mixin.py:151} INFO - [2025-03-10T18:43:56.155+0000] {dag.py:2915} INFO - Sync 1 DAGs
+[2025-03-10T18:43:56.177+0000] {logging_mixin.py:151} INFO - [2025-03-10T18:43:56.177+0000] {dag.py:3696} INFO - Setting next_dagrun for openweather_data_lake to 2025-03-10T18:00:00+00:00, run_after=2025-03-11T00:00:00+00:00
+[2025-03-10T18:43:56.187+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/openweather_data_lake.py took 0.231 seconds
+[2025-03-10T18:49:01.949+0000] {processor.py:157} INFO - Started process (PID=166) to work on /opt/airflow/dags/openweather_data_lake.py
+[2025-03-10T18:49:01.951+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/openweather_data_lake.py for tasks to queue
+[2025-03-10T18:49:01.953+0000] {logging_mixin.py:151} INFO - [2025-03-10T18:49:01.952+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/openweather_data_lake.py
+[2025-03-10T18:49:03.170+0000] {processor.py:839} INFO - DAG(s) dict_keys(['openweather_data_lake']) retrieved from /opt/airflow/dags/openweather_data_lake.py
+[2025-03-10T18:49:03.529+0000] {logging_mixin.py:151} INFO - [2025-03-10T18:49:03.528+0000] {manager.py:499} INFO - Created Permission View: %s
+[2025-03-10T18:49:03.534+0000] {logging_mixin.py:151} INFO - [2025-03-10T18:49:03.534+0000] {manager.py:499} INFO - Created Permission View: %s
+[2025-03-10T18:49:03.539+0000] {logging_mixin.py:151} INFO - [2025-03-10T18:49:03.539+0000] {manager.py:499} INFO - Created Permission View: %s
+[2025-03-10T18:49:03.542+0000] {logging_mixin.py:151} INFO - [2025-03-10T18:49:03.540+0000] {security.py:708} INFO - Not syncing DAG-level permissions for DAG 'DAG:openweather_data_lake' as access control is unset.
+[2025-03-10T18:49:03.543+0000] {logging_mixin.py:151} INFO - [2025-03-10T18:49:03.543+0000] {dag.py:2915} INFO - Sync 1 DAGs
+[2025-03-10T18:49:03.562+0000] {logging_mixin.py:151} INFO - [2025-03-10T18:49:03.562+0000] {dag.py:2937} INFO - Creating ORM DAG for openweather_data_lake
+[2025-03-10T18:49:03.582+0000] {logging_mixin.py:151} INFO - [2025-03-10T18:49:03.582+0000] {dag.py:3696} INFO - Setting next_dagrun for openweather_data_lake to 2025-03-10T12:00:00+00:00, run_after=2025-03-10T18:00:00+00:00
+[2025-03-10T18:49:03.609+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/openweather_data_lake.py took 1.665 seconds
+[2025-03-10T18:49:33.926+0000] {processor.py:157} INFO - Started process (PID=171) to work on /opt/airflow/dags/openweather_data_lake.py
+[2025-03-10T18:49:33.930+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/openweather_data_lake.py for tasks to queue
+[2025-03-10T18:49:33.931+0000] {logging_mixin.py:151} INFO - [2025-03-10T18:49:33.931+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/openweather_data_lake.py
+[2025-03-10T18:49:34.298+0000] {processor.py:839} INFO - DAG(s) dict_keys(['openweather_data_lake']) retrieved from /opt/airflow/dags/openweather_data_lake.py
+[2025-03-10T18:49:34.325+0000] {logging_mixin.py:151} INFO - [2025-03-10T18:49:34.325+0000] {dag.py:2915} INFO - Sync 1 DAGs
+[2025-03-10T18:49:34.336+0000] {logging_mixin.py:151} INFO - [2025-03-10T18:49:34.336+0000] {dag.py:3696} INFO - Setting next_dagrun for openweather_data_lake to 2025-03-10T12:00:00+00:00, run_after=2025-03-10T18:00:00+00:00
+[2025-03-10T18:49:34.343+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/openweather_data_lake.py took 0.425 seconds
+[2025-03-10T18:50:04.983+0000] {processor.py:157} INFO - Started process (PID=356) to work on /opt/airflow/dags/openweather_data_lake.py
+[2025-03-10T18:50:04.987+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/openweather_data_lake.py for tasks to queue
+[2025-03-10T18:50:04.988+0000] {logging_mixin.py:151} INFO - [2025-03-10T18:50:04.988+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/openweather_data_lake.py
+[2025-03-10T18:50:05.093+0000] {processor.py:839} INFO - DAG(s) dict_keys(['openweather_data_lake']) retrieved from /opt/airflow/dags/openweather_data_lake.py
+[2025-03-10T18:50:05.138+0000] {logging_mixin.py:151} INFO - [2025-03-10T18:50:05.138+0000] {dag.py:2915} INFO - Sync 1 DAGs
+[2025-03-10T18:50:05.156+0000] {logging_mixin.py:151} INFO - [2025-03-10T18:50:05.156+0000] {dag.py:3696} INFO - Setting next_dagrun for openweather_data_lake to 2025-03-10T18:00:00+00:00, run_after=2025-03-11T00:00:00+00:00
+[2025-03-10T18:50:05.166+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/openweather_data_lake.py took 0.190 seconds
+[2025-03-10T18:50:35.351+0000] {processor.py:157} INFO - Started process (PID=361) to work on /opt/airflow/dags/openweather_data_lake.py
+[2025-03-10T18:50:35.352+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/openweather_data_lake.py for tasks to queue
+[2025-03-10T18:50:35.353+0000] {logging_mixin.py:151} INFO - [2025-03-10T18:50:35.353+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/openweather_data_lake.py
+[2025-03-10T18:50:35.475+0000] {processor.py:839} INFO - DAG(s) dict_keys(['openweather_data_lake']) retrieved from /opt/airflow/dags/openweather_data_lake.py
+[2025-03-10T18:50:35.511+0000] {logging_mixin.py:151} INFO - [2025-03-10T18:50:35.510+0000] {dag.py:2915} INFO - Sync 1 DAGs
+[2025-03-10T18:50:35.527+0000] {logging_mixin.py:151} INFO - [2025-03-10T18:50:35.526+0000] {dag.py:3696} INFO - Setting next_dagrun for openweather_data_lake to 2025-03-10T18:00:00+00:00, run_after=2025-03-11T00:00:00+00:00
+[2025-03-10T18:50:35.535+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/openweather_data_lake.py took 0.189 seconds

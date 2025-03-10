@@ -55,7 +55,6 @@ services:
       - default
 
   airflow-scheduler:
-    build: .
     image: data-lake-project:latest
     container_name: airflow-scheduler-data-lake-project
     depends_on:
@@ -74,7 +73,6 @@ services:
       - default
 
   airflow-init:
-    build: .
     image: data-lake-project:latest
     container_name: airflow-init-data-lake-project
     depends_on:
